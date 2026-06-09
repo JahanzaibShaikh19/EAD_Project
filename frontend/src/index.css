@@ -1,0 +1,612 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   HRFLOW DESIGN SYSTEM — CSS VARIABLES
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* shadcn/ui variables (teal theme) */
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: 0 0% 100%;
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --radius: 0.625rem;
+
+    /* HRFlow Brand Colors */
+    --color-primary:        #1A6B5A;
+    --color-primary-hover:  #15594B;
+    --color-primary-light:  #E8F5F1;
+    --color-primary-mid:    #2D9E80;
+
+    /* Surface */
+    --color-bg:             #F7F8FA;
+    --color-surface:        #FFFFFF;
+    --color-surface-hover:  #F0F4F2;
+    --color-border:         #E5EAE8;
+    --color-border-subtle:  #EFF3F1;
+
+    /* Text */
+    --color-text-primary:   #111827;
+    --color-text-secondary: #6B7280;
+    --color-text-tertiary:  #9CA3AF;
+    --color-text-on-primary:#FFFFFF;
+
+    /* Semantic */
+    --color-success:        #16A34A;
+    --color-success-light:  #DCFCE7;
+    --color-warning:        #D97706;
+    --color-warning-light:  #FEF3C7;
+    --color-danger:         #DC2626;
+    --color-danger-light:   #FEE2E2;
+    --color-info:           #2563EB;
+    --color-info-light:     #DBEAFE;
+
+    /* Contract type badges */
+    --badge-fulltime:       #E8F5F1;
+    --badge-freelance:      #FDF2F8;
+    --badge-internship:     #EFF6FF;
+    --badge-contract:       #FFF7ED;
+    --badge-parttime:       #F5F3FF;
+
+    /* Shadows */
+    --shadow-card:     0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-modal:    0 20px 60px rgba(0,0,0,0.12);
+    --shadow-dropdown: 0 4px 16px rgba(0,0,0,0.08);
+
+    /* Layout */
+    --sidebar-width:        240px;
+    --sidebar-collapsed:    64px;
+    --navbar-height:        56px;
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+  }
+  .theme {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', sans-serif;
+  }
+  .dark {
+    /* Shadcn UI Variables (Mapped to aesthetic Dark Teal) */
+    --background: #060B0A;
+    --foreground: #E2E8E6;
+    --card: #0E1614;
+    --card-foreground: #E2E8E6;
+    --popover: #0E1614;
+    --popover-foreground: #E2E8E6;
+    --primary: #1FA686;
+    --primary-foreground: #FFFFFF;
+    --secondary: #15211E;
+    --secondary-foreground: #E2E8E6;
+    --muted: #15211E;
+    --muted-foreground: #94A39F;
+    --accent: #15211E;
+    --accent-foreground: #E2E8E6;
+    --destructive: #7F1D1D;
+    --border: #1C2E29;
+    --input: #1C2E29;
+    --ring: #1FA686;
+    
+    --chart-1: #1FA686;
+    --chart-2: #25C9A2;
+    --chart-3: #167D64;
+    --chart-4: #0C2B24;
+    --chart-5: #0A1C18;
+    
+    --sidebar: #0E1614;
+    --sidebar-foreground: #E2E8E6;
+    --sidebar-primary: #1FA686;
+    --sidebar-primary-foreground: #FFFFFF;
+    --sidebar-accent: #15211E;
+    --sidebar-accent-foreground: #E2E8E6;
+    --sidebar-border: #1C2E29;
+    --sidebar-ring: #1FA686;
+
+    /* HRFlow Brand Colors - Dark Mode overrides */
+    --color-primary:        #1FA686;
+    --color-primary-hover:  #25C9A2;
+    --color-primary-light:  #0C2B24;
+    --color-primary-mid:    #167D64;
+
+    /* Surface */
+    --color-bg:             #060B0A;
+    --color-surface:        #0E1614;
+    --color-surface-hover:  #15211E;
+    --color-border:         #1C2E29;
+    --color-border-subtle:  #131D1A;
+
+    /* Text */
+    --color-text-primary:   #E2E8E6;
+    --color-text-secondary: #94A39F;
+    --color-text-tertiary:  #647470;
+    --color-text-on-primary:#FFFFFF;
+
+    /* Semantic */
+    --color-success-light:  #063D2E;
+    --color-warning-light:  #4D2409;
+    --color-danger-light:   #541212;
+    --color-info-light:     #0D2966;
+  }
+  * {
+    @apply border-border outline-ring;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ============================================================
+   GLOBAL RESETS & BASE STYLES
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background: linear-gradient(135deg, #F2FAF7 0%, #E0F2EC 100%);
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  background: linear-gradient(135deg, #0A1C18 0%, #060B0A 100%);
+}
+
+#root {
+  height: 100%;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Geist', 'DM Sans', sans-serif;
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+.font-heading {
+  font-family: 'Geist', sans-serif;
+}
+
+.font-body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.stat-number {
+  font-family: 'Geist', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+}
+
+/* ============================================================
+   CARD STYLES
+   ============================================================ */
+
+.card {
+  background: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 20px 24px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+  padding: 20px 24px;
+}
+
+.dark .glass-card {
+  background: rgba(14, 22, 20, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   TABLE STYLES
+   ============================================================ */
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table thead th {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 16px;
+  text-align: left;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table tbody tr {
+  height: 56px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: background-color 0.15s ease;
+}
+
+.data-table tbody tr:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.data-table tbody td {
+  padding: 0 16px;
+  color: var(--color-text-primary);
+  font-size: 14px;
+}
+
+/* ============================================================
+   BUTTON STYLES
+   ============================================================ */
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* ============================================================
+   INPUT STYLES
+   ============================================================ */
+
+.input-base {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-base:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26,107,90,0.1);
+}
+
+.input-base::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* ============================================================
+   BADGE STYLES
+   ============================================================ */
+
+.badge-base {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Contract type badges */
+.badge-fulltime  { background: var(--badge-fulltime);  color: #1A6B5A; }
+.badge-freelance { background: var(--badge-freelance); color: #9D174D; }
+.badge-internship{ background: var(--badge-internship);color: #1D4ED8; }
+.badge-contract  { background: var(--badge-contract);  color: #C2410C; }
+.badge-part-time { background: var(--badge-parttime);  color: #6D28D9; }
+
+/* Status badges */
+.badge-success { background: var(--color-success-light); color: var(--color-success); }
+.badge-warning { background: var(--color-warning-light); color: var(--color-warning); }
+.badge-danger  { background: var(--color-danger-light);  color: var(--color-danger);  }
+.badge-info    { background: var(--color-info-light);    color: var(--color-info);    }
+
+/* ============================================================
+   SIDEBAR STYLES
+   ============================================================ */
+
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible;
+}
+
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed);
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+.sidebar-nav-item:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text-primary);
+}
+
+.sidebar-nav-item.active {
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+}
+
+.sidebar-nav-item.active svg {
+  color: var(--color-text-on-primary);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes pulse-pending {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-pending {
+  animation: pulse-pending 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.25s ease forwards;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease, width 0.3s ease;
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+    width: var(--sidebar-width);
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+  }
+}
+
+/* ============================================================
+   LAYOUT HELPERS
+   ============================================================ */
+
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: var(--sidebar-collapsed);
+}
+
+.page-content {
+  padding: 24px;
+  flex: 1;
+}
+
+.top-navbar {
+  height: var(--navbar-height);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+/* ============================================================
+   ATTENDANCE HEATMAP
+   ============================================================ */
+
+.heatmap-cell {
+  height: 70px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  cursor: default;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.heatmap-cell:hover {
+  background-color: var(--color-surface-hover) !important;
+}
+
+.heatmap-present  { background: var(--color-primary-light); color: var(--color-primary); }
+.heatmap-absent   { background: var(--color-danger-light);  color: var(--color-danger);  }
+.heatmap-late     { background: var(--color-warning-light); color: var(--color-warning); }
+.heatmap-leave    { background: var(--color-info-light);    color: var(--color-info);    }
+.heatmap-holiday  { background: #F3F4F6;                    color: var(--color-text-tertiary); }
+.heatmap-empty    { background: #F9FAFB;                    color: transparent; }
+
+/* ============================================================
+   FORM ERROR STYLES
+   ============================================================ */
+
+.field-error {
+  color: var(--color-danger);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   PRIORITY BADGES
+   ============================================================ */
+
+.priority-low    { background: #F3F4F6; color: #6B7280; }
+.priority-normal { background: var(--color-info-light);    color: var(--color-info); }
+.priority-high   { background: var(--color-warning-light); color: var(--color-warning); }
+.priority-urgent { background: var(--color-danger-light);  color: var(--color-danger); }
